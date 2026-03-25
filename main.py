@@ -1,7 +1,5 @@
-# main.py
-
 from src.utils.data_loader import load_data
-from src.utils.preprocessing import clean_data, extract_datetime_features, encode_categorical
+from src.utils.preprocessing import clean_data, select_features
 
 
 def main():
@@ -9,16 +7,15 @@ def main():
 
     df = load_data(file_path)
 
-    # Step 1: Clean
+    # Clean data
     df = clean_data(df)
 
-    # Step 2: Extract time features
-    df = extract_datetime_features(df, date_column="Date")  # ⚠️ change column name if needed
+    # Select features for ML
+    df_features = select_features(df)
 
-    # Step 3: Encode categorical
-    df = encode_categorical(df, columns=["Location", "Crime_Type"])  # ⚠️ adjust names
-
-    print(df.head())
+    print("Original Shape:", df.shape)
+    print("Feature Shape:", df_features.shape)
+    print(df_features.head())
 
 
 if __name__ == "__main__":
