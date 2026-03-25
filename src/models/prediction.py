@@ -14,7 +14,12 @@ def train_model(df):
     y = df["TOTAL IPC CRIMES"]
 
     # Features
-    X = df.drop(columns=["TOTAL IPC CRIMES", "STATE/UT", "YEAR"])
+    X = df.drop(columns=[
+    "TOTAL IPC CRIMES",
+    "STATE/UT",
+    "YEAR",
+    "Risk_Level"   # ❗ FIX
+])
 
     # Split
     X_train, X_test, y_train, y_test = train_test_split(
